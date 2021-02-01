@@ -1,6 +1,6 @@
-package com.lb.abcd.service;
+package com.lb.abcd.shiro.service;
 
-import com.lb.abcd.entity.User;
+import com.lb.abcd.shiro.entity.User;
 
 /**
  * @ClassName UserService

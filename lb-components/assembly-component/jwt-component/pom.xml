@@ -6,7 +6,6 @@
 		<groupId>com.lb.abcd</groupId>
 		<artifactId>assembly-component</artifactId>
 		<version>5.2.0-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>jwt-component</artifactId>
@@ -16,6 +15,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
 		</dependency>
 
 		<!-- cache -->
@@ -32,11 +36,6 @@
 		</dependency>
 
 		<!-- jwt -->
-		<!--<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-		</dependency>-->
-
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
@@ -52,13 +51,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-web</artifactId>
-			<version>1.4.2</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>

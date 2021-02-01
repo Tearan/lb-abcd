@@ -22,9 +22,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
 
-    /**
-     * 注入redisTemplate bean
-     */
+    /** 注入redisTemplate bean */
     private  RedisTemplate redisTemplate;
 
     @Autowired
@@ -36,13 +34,11 @@ public class RedisUtil {
 
     /**
      * 指定缓存失效时间
-     *
      * @param key  键
      * @param time 时间(秒)
      * @return
      */
     public boolean expire(String key, long time) {
-
         try {
             if (time > 0) {
                 redisTemplate.expire(key, time, TimeUnit.SECONDS);
@@ -56,7 +52,6 @@ public class RedisUtil {
 
     /**
      * 根据key获取过期时间
-     *
      * @param key 键 不能为null
      * @return 时间(秒) 返回0代表为永久有效
      */
@@ -66,7 +61,6 @@ public class RedisUtil {
 
     /**
      * 判断key是否存在
-     *
      * @param key 键
      * @return true 存在 false不存在
      */
@@ -81,7 +75,6 @@ public class RedisUtil {
 
     /**
      * 删除缓存
-     *
      * @param key 可以传一个值 或多个
      */
     @SuppressWarnings("unchecked")
@@ -94,6 +87,7 @@ public class RedisUtil {
             }
         }
     }
+
     // ============================String(字符串)=============================
 
     /**
@@ -108,7 +102,6 @@ public class RedisUtil {
 
     /**
      * 普通缓存放入
-     *
      * @param key   键
      * @param value 值
      * @return true成功 false失败
@@ -125,7 +118,6 @@ public class RedisUtil {
 
     /**
      * 普通缓存放入并设置时间
-     *
      * @param key   键
      * @param value 值
      * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
@@ -147,7 +139,6 @@ public class RedisUtil {
 
     /**
      * 递增
-     *
      * @param key   键
      * @param delta 要增加几(大于0)
      * @return
@@ -161,7 +152,6 @@ public class RedisUtil {
 
     /**
      * 递减
-     *
      * @param key   键
      * @param delta 要减少几(小于0)
      * @return
@@ -172,6 +162,7 @@ public class RedisUtil {
         }
         return redisTemplate.opsForValue().increment(key, -delta);
     }
+
     // ================================Hash(哈希)=================================
 
     /**
@@ -187,7 +178,6 @@ public class RedisUtil {
 
     /**
      * 获取hashKey对应的所有键值
-     *
      * @param key 键
      * @return 对应的多个键值
      */
@@ -197,7 +187,6 @@ public class RedisUtil {
 
     /**
      * HashSet
-     *
      * @param key 键
      * @param map 对应多个键值
      * @return true 成功 false 失败
@@ -214,7 +203,6 @@ public class RedisUtil {
 
     /**
      * HashSet 并设置时间
-     *
      * @param key  键
      * @param map  对应多个键值
      * @param time 时间(秒)
@@ -235,7 +223,6 @@ public class RedisUtil {
 
     /**
      * 向一张hash表中放入数据,如果不存在将创建
-     *
      * @param key   键
      * @param item  项
      * @param value 值
@@ -317,6 +304,7 @@ public class RedisUtil {
     public double hdecr(String key, String item, double by) {
         return redisTemplate.opsForHash().increment(key, item, -by);
     }
+
     // ============================Set(集合)=============================
 
     /**
@@ -417,6 +405,7 @@ public class RedisUtil {
             return 0;
         }
     }
+
     // ===============================List(列表)=================================
 
     /**

@@ -1,12 +1,12 @@
 package com.lb.abcd.shiro.config;
 
-import com.lb.abcd.entity.Module;
-import com.lb.abcd.entity.Role;
-import com.lb.abcd.entity.User;
 import com.lb.abcd.jwt.JwtToken;
 import com.lb.abcd.jwt.util.JWTUtil;
 import com.lb.abcd.redis.util.RedisUtil;
-import com.lb.abcd.service.UserService;
+import com.lb.abcd.shiro.entity.Module;
+import com.lb.abcd.shiro.entity.Role;
+import com.lb.abcd.shiro.entity.User;
+import com.lb.abcd.shiro.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

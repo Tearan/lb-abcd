@@ -20,8 +20,8 @@ import java.util.Date;
 @Slf4j
 public class JWTUtil {
 
-    // 过期时间5分钟
-    private static final long EXPIRE_TIME = 1000*60*5;
+    /** 过期时间5分钟*/
+    private static final long EXPIRE_TIME = 1000 * 60 * 5;
 
     /**
      * 校验token是否正确
@@ -65,7 +65,7 @@ public class JWTUtil {
         try {
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
             Algorithm algorithm = Algorithm.HMAC256(password);
-            // 附带username信息
+            /** 附带username信息*/
             return JWT.create()
                     .withClaim( "username",username)
                     .withExpiresAt(date)

@@ -1,4 +1,4 @@
-package com.lb.abcd.entity;
+package com.lb.abcd.shiro.entity;
 
 import lombok.Data;
 

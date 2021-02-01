@@ -1,7 +1,7 @@
-package com.lb.abcd.service.impl;
+package com.lb.abcd.shiro.service.impl;
 
-import com.lb.abcd.entity.User;
-import com.lb.abcd.service.UserService;
+import com.lb.abcd.shiro.entity.User;
+import com.lb.abcd.shiro.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**

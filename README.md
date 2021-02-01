@@ -1,4 +1,4 @@
-# LB-ABCD-HUB 物联网平台
+# LB-ABCD 物联网平台
 
 ## ABCD代表含义
 

@@ -54,11 +54,6 @@
             </dependency>
 
             <!-- JWT -->
-            <!--<dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-impl</artifactId>
-                <version>${jjwt-impl.version}</version>
-            </dependency>-->
             <dependency>
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
