@@ -1,5 +1,5 @@
 server:
-  port: 16781
+  port: 16888
 
 spring:
   ## 数据库基本信息配置

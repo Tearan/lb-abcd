@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.apache.shiro.mgt.SecurityManager;
 
-import javax.annotation.Resource;
 import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,11 +28,8 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Resource
-    private MyRealm myRealm;
-
     @Bean("securityManager")
-    public DefaultWebSecurityManager getManager() {
+    public DefaultWebSecurityManager getManager(MyRealm realm) {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
         /**
          * 关闭shiro自带的session，详情见文档
@@ -45,7 +41,7 @@ public class ShiroConfig {
         subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
         manager.setSubjectDAO(subjectDAO);
         /** 使用自己的realm*/
-        manager.setRealm(myRealm);
+        manager.setRealm(realm);
         return manager;
     }
 

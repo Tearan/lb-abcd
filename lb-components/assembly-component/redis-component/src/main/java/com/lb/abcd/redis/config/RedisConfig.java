@@ -27,15 +27,11 @@ import java.time.Duration;
  * @Version 1.0
  */
 
-/*
+
 @Configuration
-*/
-/** 系统中有RedisOperations类时*//*
-
+/** 系统中有RedisOperations类时*/
 @ConditionalOnClass(RedisOperations.class)
-*/
-/** 启动RedisProperties这个类*//*
-
+/** 启动RedisProperties这个类*/
 @EnableConfigurationProperties(RedisProperties.class)
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
@@ -43,22 +39,14 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                */
-/** 1分钟缓存失效*//*
-
-                .entryTtl(Duration.ofSeconds(60))
-                */
-/** 设置key的序列化方式*//*
-
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                */
-/** 设置value的序列化方式*//*
-
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new FastJsonRedisSerializer(Object.class)))
-                */
-/** 不缓存null值*//*
-
-                .disableCachingNullValues();
+                        /** 1分钟缓存失效*/
+                        .entryTtl(Duration.ofSeconds(60))
+                        /** 设置key的序列化方式*/
+                        .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                        /** 设置value的序列化方式*/
+                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new FastJsonRedisSerializer(Object.class)))
+                        /** 不缓存null值*/
+                        .disableCachingNullValues();
         RedisCacheManager redisCacheManager = RedisCacheManager.builder(redisConnectionFactory)
                 .cacheDefaults(config)
                 .transactionAware()
@@ -66,4 +54,3 @@ public class RedisConfig extends CachingConfigurerSupport {
         return redisCacheManager;
     }
 }
-*/
