@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtil {
 
     /** 注入redisTemplate bean */
-    private  RedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Autowired
     public RedisUtil(RedisTemplate redisTemplate){

@@ -9,13 +9,13 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @ClassName SwaggerConfig
@@ -35,40 +35,33 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
 
-        /** 这是为了我们在用 swagger 测试接口的时候添加头部信息 */
-        List<Parameter> pars = new ArrayList<Parameter>();
-        ParameterBuilder tokenPar = new ParameterBuilder();
-        ParameterBuilder refreshTokenPar = new ParameterBuilder();
-        /** 设置全局参数 */
-        tokenPar.name("authorization")
-                .description("token")
-                .modelRef(new ModelRef("string"))
-                .parameterType("header").required(true);
-
-        refreshTokenPar.name("refresh_token")
-                       .description("token")
-                       .modelRef(new ModelRef("string"))
-                       .parameterType("header").required(true);
-
-        /** 多个的时候 就直接添加到 pars 就可以了 */
-
-        pars.add(tokenPar.build());
-        pars.add(refreshTokenPar.build());
+        /** 全局参数 */
+        Parameter token = new ParameterBuilder().name("authorization")
+                .description("用户登陆令牌")
+                .parameterType("header")
+                .modelRef(new ModelRef("String"))
+                /** 是否必须*/
+                .required(false)
+                .build();
+        ArrayList<Parameter> parameters = new ArrayList<>();
+        parameters.add(token);
         return new Docket(DocumentationType.SWAGGER_2)
+                .globalOperationParameters(parameters)
                 .apiInfo(apiInfo())
+                .enable(enable)
+                .groupName("ABCD-平台")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.lb.abcd.rest"))
                 .paths(PathSelectors.any())
-                .build()
-                .globalOperationParameters(pars)
-                .enable(enable);
+                .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("ABCD")
                 .description("ABCD-平台")
-                .termsOfServiceUrl("")
+                /** 作者信息*/
+                .contact(new Contact("Terran", "https://www.abcd.com/", "929145946@qq.com"))
                 .version("1.0")
                 .build();
     }

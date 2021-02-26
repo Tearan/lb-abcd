@@ -12,4 +12,6 @@ import com.lb.abcd.shiro.entity.User;
 public interface UserService {
 
     User findUserByUserName(String username);
+
+    User save(User user);
 }

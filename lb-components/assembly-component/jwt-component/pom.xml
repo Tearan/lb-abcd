@@ -57,7 +57,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.lb.abcd</groupId>
+            <artifactId>redis-component</artifactId>
+            <version>5.2.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.lb.abcd</groupId>
+            <artifactId>system-component</artifactId>
+            <version>5.2.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 </project>

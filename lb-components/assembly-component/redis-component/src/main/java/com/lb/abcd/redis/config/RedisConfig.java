@@ -16,7 +16,6 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import javax.annotation.Resource;
 import java.time.Duration;
 
 /**

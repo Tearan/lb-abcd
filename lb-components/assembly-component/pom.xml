@@ -15,6 +15,7 @@
         <module>redis-component</module>
         <module>swagger-component</module>
         <module>shiro-component</module>
+        <module>system-component</module>
     </modules>
 
     <artifactId>assembly-component</artifactId>

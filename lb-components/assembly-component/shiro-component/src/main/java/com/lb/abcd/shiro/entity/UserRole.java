@@ -10,36 +10,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
- * @ClassName Modules
- * @Description 权限实体类
+ * @ClassName userRole
+ * @Description TODO
  * @Author Terran
- * @Date 2021/1/31 15:11
+ * @Date 2021/2/3 10:13
  * @Version 1.0
  */
+
 @Data
 @Entity
-/** 会进行是否为空的校验， 全部参数的构造函数的自动生成*/
 @AllArgsConstructor
-/** 无参构造函数*/
 @NoArgsConstructor
-@ApiModel(value = "权限")
-@Table(name = "module",schema = "public")
-@TableName("module")
-public class Module {
+@ApiModel(value="用戶角色")
+@Table(name = "user_role",schema = "public")
+@TableName("user_role")
+public class UserRole {
 
     @TableId(type = IdType.INPUT)
     @ApiModelProperty(value = "id")
     @Id
     private String id;
 
-    @ApiModelProperty(value = "权限名")
-    @Column(name = "mname")
-    private String mname;
+    @ApiModelProperty(value = "用户ID")
+    @Column(name = "u_id")
+    private String uId;
 
-    @ApiModelProperty(value = "角色列表")
-    @Transient
-    private List<Role> roles;
+    @ApiModelProperty(value = "权限ID")
+    @Column(name = "r_id")
+    private String rId;
 }

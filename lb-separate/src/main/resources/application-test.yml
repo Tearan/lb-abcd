@@ -6,7 +6,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/lb-abcd?currentSchema=test
+    url: jdbc:postgresql://127.0.0.1:5432/lb-abcd?currentSchema=sys&stringtype=unspecified
     username: lbcs
     password: 123456
     hikari:
@@ -20,9 +20,18 @@ spring:
   ## JPA相关配置
   jpa:
     show-sql: true
-    # 框架自动创建或更新表结构
+    database: postgresql
     hibernate:
       ddl-auto: update
+    # 框架自动创建或更新表结
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
 
   ## jackson相关配置
   jackson:
@@ -50,8 +59,21 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
   # 配置mapper xml文件的路径
-  mapper-locations:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.lb.abcd.**.entity
+
+## JWT相关配置
+jwt:
+  # AccessToken 过期时间单位分钟
+  EXPIRE_TIME: 5
+  # RefreshToken 过期时间单位分钟
+  REFRESH_EXPIRE_TIME: 30
+  # 密钥盐
+  TOKEN_SECRET: 50eFa4d9W8ba4d*bb276f^11
+
 
 ## swagger相关配置
 swagger2:
