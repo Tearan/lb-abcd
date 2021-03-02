@@ -12,6 +12,7 @@
 
     <modules>
         <module>authentication-manager</module>
+        <module>system-manager</module>
     </modules>
 
     <artifactId>lb-manager</artifactId>

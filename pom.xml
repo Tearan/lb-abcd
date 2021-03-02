@@ -22,7 +22,9 @@
     </parent>
 
     <properties>
-        <mybatis.plus.version>3.3.2</mybatis.plus.version>
+        <mybatis.plus.version>1.0.5</mybatis.plus.version>
+        <mybatis-plus>3.1.1</mybatis-plus>
+        <mysql-driver-version>8.0.21</mysql-driver-version>
         <lombok.version>1.18.12</lombok.version>
         <fastjson.version>1.2.60</fastjson.version>
         <jjwt-impl.version>0.10.5</jjwt-impl.version>
@@ -32,12 +34,26 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- mybatis-plus 持久层 -->
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-driver-version}</version>
+            </dependency>
+
+            <!-- mybatis-plus begin -->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <artifactId>mybatisplus-spring-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus}</version>
+            </dependency>
+            <!-- mybatis-plus end -->
 
             <!--lombok用来简化实体类 -->
             <dependency>
@@ -55,9 +71,9 @@
 
             <!-- JWT -->
             <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>3.9.0</version>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.1</version>
             </dependency>
 
             <!-- shiro -->

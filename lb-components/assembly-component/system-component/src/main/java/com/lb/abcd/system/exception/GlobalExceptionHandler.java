@@ -34,33 +34,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Rs<Object> APIExceptionHandler(APIException e) {
         log.error("api异常");
-        return new Rs<>(RsCode.FAILED, e.getMsg());
-    }
-
-    /**
-     * 捕捉所有Shiro异常
-     */
-    @ExceptionHandler(ShiroException.class)
-    public Rs<String> handle401(ShiroException e) {
-        return new Rs<String>(RsCode.NO_PERMISSION, "无权访问(Unauthorized):" + e.getMessage());
-    }
-
-    /**
-     * 单独捕捉Shiro(UnauthorizedException)异常 该异常为访问有权限管控的请求而该用户没有所需权限所抛出的异常
-     */
-    @ExceptionHandler(UnauthorizedException.class)
-    public Rs<String> handle401(UnauthorizedException e) {
-        return new Rs<String>(RsCode.NO_PERMISSION, "无权访问(Unauthorized):当前Subject没有此请求所需权限(" + e.getMessage() + ")");
-    }
-
-    /**
-     * 单独捕捉Shiro(UnauthenticatedException)异常
-     * 该异常为以游客身份访问有权限管控的请求无法对匿名主体进行授权，而授权失败所抛出的异常
-     */
-    @ExceptionHandler(UnauthenticatedException.class)
-    public Rs<String> handle401(UnauthenticatedException e) {
-        e.printStackTrace();
-        return new Rs<String>(RsCode.NO_PERMISSION, "无权访问(Unauthorized):当前Subject是匿名Subject，请先登录(This subject is anonymous.)");
+        return new Rs<>(RsCode.SYSTEM_ERROR, e.getMsg());
     }
 
     /**
@@ -81,6 +55,6 @@ public class GlobalExceptionHandler {
             }
         }
         /** 然后提取错误提示信息进行返回*/
-        return new Rs<>(RsCode.VALIDATE_FAILED, list);
+        return new Rs<>(RsCode.DATA_ERROR, list);
     }
 }

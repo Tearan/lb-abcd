@@ -68,12 +68,14 @@ mybatis-plus:
 ## JWT相关配置
 jwt:
   # AccessToken 过期时间单位分钟
-  EXPIRE_TIME: 5
-  # RefreshToken 过期时间单位分钟
-  REFRESH_EXPIRE_TIME: 30
+  access-token-expire-time: PT2H
+  # Refresh-Token pc过期时间单位分钟
+  refresh-token-expire-pc-time: P30D
+  # Refresh-Token app过期时间单位分钟
+  refresh-token-expire-app-time: PT8H
   # 密钥盐
-  TOKEN_SECRET: 50eFa4d9W8ba4d*bb276f^11
-
+  token-secret: 50eFa4d9W8ba4d*bb276f^11
+  issuer: _terran_
 
 ## swagger相关配置
 swagger2:

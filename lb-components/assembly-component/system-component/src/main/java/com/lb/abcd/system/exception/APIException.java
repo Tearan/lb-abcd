@@ -13,12 +13,20 @@ import lombok.Data;
 @Data
 public class APIException extends RuntimeException{
 
+    /** 异常 code */
     private Integer code;
 
+    /** 异常提示 */
     private String msg;
 
+    public APIException(Integer code, String msg) {
+        super(msg);
+        this.code = code;
+        this.msg = msg;
+    }
+
     public APIException() {
-        this(RsCode.FAILED);
+        this(RsCode.SYSTEM_ERROR);
     }
 
     public APIException(RsCode failed) {

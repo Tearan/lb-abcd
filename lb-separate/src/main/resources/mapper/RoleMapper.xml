@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lb.abcd.shiro.entity.Role">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="description" property="description" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="deleted" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, description, status, create_time, update_time, deleted
+    </sql>
+
+    <select id="getRoleByUserId" parameterType="String" resultMap="BaseResultMap">
+        select r.* from sys_role r
+        left join sys_user_role ur on (r.id=ur.role_id)
+        left join sys_user u on (ur.user_id=u.id)
+        where u.id=#{userId}
+        and u.deleted=1
+    </select>
+
+    <select id="getRoles" parameterType="com.system.vo.request.RolePageReqVO" resultMap="BaseResultMap">
+        select * from sys_role r
+        <where>
+            r.deleted=1
+            <if test="vo.roleId !=null and vo.roleId != ''">
+                and r.id=#{vo.roleId}
+            </if>
+            <if test="vo.roleName !=null and vo.roleName != ''">
+                and r.name like concat('%',#{vo.roleName},'%')
+            </if>
+            <if test="vo.status !=null and vo.status != '' or vo.status==0">
+                and r.status =#{vo.status}
+            </if>
+            <if test="vo.startTime !=null and vo.startTime != ''">
+                and r.create_time &gt;= #{vo.startTime}
+            </if>
+            <if test="vo.endTime !=null and vo.endTime != ''">
+                and r.create_time &lt;= #{vo.endTime}
+            </if>
+        </where>
+    </select>
+</mapper>

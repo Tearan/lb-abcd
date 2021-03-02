@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lb.abcd.shiro.entity.Permission">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="perms" property="perms" />
+        <result column="url" property="url" />
+        <result column="method" property="method" />
+        <result column="pid" property="pid" />
+        <result column="order_num" property="orderNum" />
+        <result column="type" property="type" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="deleted" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, perms, url, method, pid, order_num, type, status, create_time, update_time, deleted
+    </sql>
+
+    <select id="getPermissionByUserId" resultMap="BaseResultMap" parameterType="String">
+        select p.* from sys_permission p
+        left join sys_role_permission rp on (p.id=rp.permission_id)
+        left join sys_role r on (rp.role_id=r.id)
+        left join sys_user_role ur on (r.id=ur.role_id)
+        left join sys_user u on (ur.user_id=u.id)
+        where u.id=#{userId}
+        and u.deleted=1
+        and p.perms is not null
+        and p.perms&lt;&gt;''
+    </select>
+
+    <select id="getMenu" resultMap="BaseResultMap">
+        select p.* from sys_permission p
+        where p.deleted=1
+    </select>
+
+    <select id="getUserIds" resultType="String" parameterType="String">
+        select u.id from sys_user u
+        left join sys_user_role ur on (u.id=ur.user_id)
+        left join sys_role_permission sp on (ur.role_id=sp.role_id)
+        left join sys_permission p on (sp.permission_id=p.id)
+        where p.id = #{id}
+        and p.deleted=1
+    </select>
+</mapper>

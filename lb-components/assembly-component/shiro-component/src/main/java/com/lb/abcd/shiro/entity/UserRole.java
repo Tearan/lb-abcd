@@ -1,6 +1,7 @@
 package com.lb.abcd.shiro.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @ClassName userRole
@@ -28,16 +30,20 @@ import javax.persistence.*;
 @TableName("user_role")
 public class UserRole {
 
-    @TableId(type = IdType.INPUT)
+    @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")
     @Id
     private String id;
 
-    @ApiModelProperty(value = "用户ID")
-    @Column(name = "u_id")
-    private String uId;
+    @ApiModelProperty(value = "用户id")
+    @TableField("user_id")
+    private String userId;
 
-    @ApiModelProperty(value = "权限ID")
-    @Column(name = "r_id")
-    private String rId;
+    @ApiModelProperty(value = "角色id")
+    @TableField("role_id")
+    private String roleId;
+
+    @ApiModelProperty(value = "创建时间")
+    @TableField("create_time")
+    private Date createTime;
 }

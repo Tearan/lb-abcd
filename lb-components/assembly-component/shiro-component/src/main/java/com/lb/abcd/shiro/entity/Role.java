@@ -1,8 +1,11 @@
 package com.lb.abcd.shiro.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lb.abcd.shiro.vo.response.PermissionRespNodeVO;
+import com.lb.abcd.system.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -10,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,25 +27,41 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value="角色")
-@Table(name = "role",schema = "public")
+@ApiModel(value = "角色")
+@Table(name = "sys_role",schema = "public")
 @TableName("role")
-public class Role {
+public class Role extends BaseEntity {
 
-    @TableId(type = IdType.INPUT)
+    @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")
     @Id
     private Integer id;
 
-    @ApiModelProperty(value = "角色名")
-    @Column(name = "rname")
-    private String rname;
+    @ApiModelProperty(value = "角色名称")
+    @TableField("name")
+    private String name;
 
-    @ApiModelProperty(value = "用户列表")
-    @Transient
-    private List<User> users;
+    @TableField("description")
+    private String description;
 
-    @ApiModelProperty(value = "权限列表")
+    @ApiModelProperty(value = "状态(0:正常,1:弃用)")
+    @TableField("status")
+    private Integer status;
+
+    @ApiModelProperty(value = "创建时间")
+    @TableField("create_time")
+    private Date createTime;
+
+    @ApiModelProperty(value = "更新时间")
+    @TableField("update_time")
+    private Date updateTime;
+
+    @ApiModelProperty(value = "是否删除(0.未删除;1.已删除)")
+    @TableField("deleted")
+    private Integer deleted;
+
+    @ApiModelProperty(value = "权限树")
     @Transient
-    private List<Module> modules;
+    @TableField(exist = false)
+    private transient List<PermissionRespNodeVO> permissionRespNode;
 }

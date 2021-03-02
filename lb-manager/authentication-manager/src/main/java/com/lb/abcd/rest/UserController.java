@@ -1,11 +1,14 @@
 package com.lb.abcd.rest;
 
-import com.lb.abcd.shiro.entity.User;
 import com.lb.abcd.shiro.service.UserService;
+import com.lb.abcd.system.annotation.MyLog;
+import com.lb.abcd.system.rest.BaseController;
 import com.lb.abcd.system.result.Rs;
 import com.lb.abcd.system.result.RsCode;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,29 +26,32 @@ import java.util.UUID;
  * @Version 1.0
  */
 @Slf4j
-@Api(value = "用户操作【增,删,改,查,设置权限】",tags = "用户操作【增,删,改,查,设置权限】")
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("test")
+@Api(tags = "用户管理")
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("save")
-    public Rs save(@Valid @RequestBody User user){
-        String salt = UUID.randomUUID().toString().substring(0,24);
-        String password = new SimpleHash("MD5",user.getPassword(),salt,32).toString();
-        user.setSalt(salt);
-        user.setPassword(password);
-        userService.save(user);
-        return new Rs(RsCode.SUCCESS);
+    @PostMapping("/user")
+    @ApiOperation("新增")
+    @MyLog(title = "用户管理",action = "新增用户信息")
+    @RequiresPermissions("sys:user:add")
+    public Rs add(HttpServletRequest request) {
+        Rs result = Rs.success();
+        String userId = getUserId(request);
+        return result;
     }
 
-    @GetMapping("2003")
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public Rs<String> unauthorized(HttpServletRequest httpServletRequest){
-        String message = (String) httpServletRequest.getAttribute("msg");
-        return new Rs<>(RsCode.NO_PERMISSION,message);
+    @PostMapping("/test")
+    @ApiOperation("新增")
+    @MyLog(title = "用户管理",action = "新增用户信息")
+    @RequiresPermissions("sys:user:add")
+    public Rs test() {
+        Rs rs = Rs.success();
+        this.userService.getUser();
+        return rs;
     }
 
 
