@@ -72,12 +72,14 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
         QueryWrapper<Permission> wrapper = new QueryWrapper<>();
         wrapper.eq("deleted",1).orderByDesc("order_num");
         List<Permission> permissions = this.baseMapper.selectList(wrapper);
-        if(!permissions.isEmpty())
+        if(!permissions.isEmpty()){
             for(Permission permission:permissions){
                 Permission parent = this.baseMapper.selectById(permission.getPid());
-                if(parent!=null)
+                if(parent!=null){
                     permission.setPidName(parent.getName());
+                }
             }
+        }
         return permissions;
     }
 
@@ -134,8 +136,9 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
             QueryWrapper<Permission> wrapper = new QueryWrapper<>();
             wrapper.eq("deleted",1).eq("pid",vo.getId());
             List<Permission> permissions = this.baseMapper.selectList(wrapper);
-            if(!permissions.isEmpty())
+            if(!permissions.isEmpty()){
                 throw new APIException(RsCode.OPERATION_MENU_PERMISSION_UPDATE);
+            }
         }
 
         Permission update = new Permission();
@@ -147,7 +150,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
         }
 
         /** 当权限更新的时候，redis中的权限也应该更新*/
-        if(!permission.getPerms().equals(vo.getPerms())||permission.getStatus()!=vo.getStatus()){
+        if(!permission.getPerms().equals(vo.getPerms()) || permission.getStatus() != vo.getStatus()){
             List<String> userIds = this.baseMapper.getUserIds(vo.getId());
             for(String userId : userIds){
 

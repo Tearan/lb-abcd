@@ -34,10 +34,11 @@ public class MenuTreeUtil {
                 PermissionRespNodeVO parent = new PermissionRespNodeVO();
                 BeanUtils.copyProperties(permission,parent);
                 parent.setTitle(permission.getName());
-                if(type)
+                if(type){
                     parent.setChildren(getChildMenu(parent.getId(),permissions));
-                else
+                }else{
                     parent.setChildren(getChildBtn(parent.getId(),permissions));
+                }
                 list.add(parent);
             }
         }

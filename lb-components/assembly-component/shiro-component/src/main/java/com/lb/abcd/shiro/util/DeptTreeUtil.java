@@ -31,7 +31,7 @@ public class DeptTreeUtil {
 
     private static List<DeptRespNodeVO> getChild(String pid,List<Dept> depts){
         List<DeptRespNodeVO> list=new ArrayList<>();
-        for(Dept dept : depts)
+        for(Dept dept : depts){
             if(dept.getPid().equals(pid)){
                 DeptRespNodeVO node = new DeptRespNodeVO();
                 node.setId(dept.getId());
@@ -39,6 +39,7 @@ public class DeptTreeUtil {
                 node.setChildren(getChild(dept.getId(),depts));
                 list.add(node);
             }
+        }
         return list;
     }
 }

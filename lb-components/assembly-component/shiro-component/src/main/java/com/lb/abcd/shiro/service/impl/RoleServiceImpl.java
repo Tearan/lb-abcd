@@ -137,8 +137,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
      */
     private void setChecked(List<PermissionRespNodeVO> permissionList,Set<String> permissionIds){
         for(PermissionRespNodeVO node:permissionList) {
-            if (permissionIds.contains(node.getId()) && (node.getChildren() == null || node.getChildren().isEmpty()))
+            if (permissionIds.contains(node.getId()) && (node.getChildren() == null || node.getChildren().isEmpty())){
                 node.setChecked(true);
+            }
             setChecked((List<PermissionRespNodeVO>) node.getChildren(),permissionIds);
         }
     }

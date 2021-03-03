@@ -37,8 +37,9 @@ public class DeptServiceImpl extends ServiceImpl<DeptDao, Dept> implements DeptS
         List<Dept> depts = this.baseMapper.selectList(new QueryWrapper<Dept>().eq("deleted", 1));
         for(Dept dept : depts){
             Dept parent = this.baseMapper.selectById(dept.getPid());
-            if(parent!=null)
+            if(parent!=null){
                 dept.setPidName(parent.getName());
+            }
         }
         return depts;
     }
