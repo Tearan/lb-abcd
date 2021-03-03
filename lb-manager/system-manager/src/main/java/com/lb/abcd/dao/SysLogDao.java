@@ -19,8 +19,11 @@ import org.springframework.data.repository.query.Param;
 @Mapper
 public interface SysLogDao extends BaseMapper<SysLog> {
 
-    /*
-    获取所有的日志
+    /**
+     * 获取所有的日志
+     * @param page
+     * @param vo
+     * @return
      */
     public IPage<SysLog> selectAll(Page page, @Param("vo") SysLogPageReqVO vo);
 }

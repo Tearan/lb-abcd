@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -32,8 +33,9 @@ import java.util.Date;
 @ApiModel(value = "User对象")
 @Table(name = "sys_user")
 @TableName("sys_user")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 
     // 测试角色，只拥有查看的权限
     public static final String roleId = "6293142a-2e7c-4df5-87d1-4781e476d20d";

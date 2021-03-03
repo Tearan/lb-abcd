@@ -1,7 +1,6 @@
 package com.lb.abcd.redis.config;
 
 import com.lb.abcd.redis.FastJsonRedisSerializer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -22,7 +22,11 @@ public class FastJsonRedisSerializer<T> implements RedisSerializer<T> {
     private Class<T> clazz;
     static {
         ParserConfig.getGlobalInstance().addAccept("com.lb.abcd.**.entity");
+
+        /** 添加AutoType白名单*/
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
     }
+
     public FastJsonRedisSerializer(Class<T> clazz) {
         super();
         this.clazz = clazz;

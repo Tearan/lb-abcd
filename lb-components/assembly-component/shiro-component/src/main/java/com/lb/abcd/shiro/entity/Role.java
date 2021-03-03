@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,9 @@ import java.util.List;
 @ApiModel(value = "角色")
 @Table(name = "sys_role")
 @TableName("sys_role")
-public class Role extends BaseEntity {
+public class Role extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")

@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -34,7 +35,9 @@ import java.util.Date;
 @ApiModel(value = "Dept对象")
 @Table(name = "sys_dept")
 @TableName("sys_dept")
-public class Dept extends BaseEntity {
+public class Dept extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")

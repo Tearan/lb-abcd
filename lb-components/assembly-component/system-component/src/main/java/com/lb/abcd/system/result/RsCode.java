@@ -39,12 +39,12 @@ public enum RsCode {
 
     ACCOUNT_LOCK_TIP(2010012,"该账号被锁定,请联系系统管理员"),
     OPERATION_MENU_PERMISSION_UPDATE(2010013,"操作的菜单权限存在子集关联不允许变更"),
-    ROLE_PERMISSION_RELATION(2010014, "该菜单权限存在子集关联，不允许删除"),
-    NOT_PERMISSION_DELETED_DEPT(2010015,"该组织机构下还关联着用户，不允许删除"),
+    ROLE_PERMISSION_RELATION(2010014, "该菜单权限存在子集关联,不允许删除"),
+    NOT_PERMISSION_DELETED_DEPT(2010015,"该组织机构下还关联着用户,不允许删除"),
     OLD_PASSWORD_ERROR(2010016,"旧密码不匹配"),
 
     /** 没有权限禁止访问: 2030001*/
-    NOT_PERMISSION(2030001,"没有权限访问该资源"),
+    NOT_PERMISSION(2030001,"权限不足,拒绝访问"),
 
     /** 系统主动抛出的业务异常: 200xxxx*/
     DATA_ERROR( 2000001,"传入数据异常"),
@@ -53,9 +53,9 @@ public enum RsCode {
     ACCOUNT_HAS_ERROR(2000003,"该账号已存在"),
     ACCOUNT_PASSWORD_ERROR(2000004,"用户名密码不匹配"),
     OPERATION_ERROR(2000005,"操作失败"),
-    OPERATION_MENU_PERMISSION_CATALOG_ERROR(2000006,"操作后的菜单类型是目录，所属菜单必须为默认顶级菜单或者目录"),
-    OPERATION_MENU_PERMISSION_MENU_ERROR(2000007,"操作后的菜单类型是菜单，所属菜单必须为目录类型"),
-    OPERATION_MENU_PERMISSION_BTN_ERROR(2000008,"操作后的菜单类型是按钮，所属菜单必须为菜单类型"),
+    OPERATION_MENU_PERMISSION_CATALOG_ERROR(2000006,"操作后的菜单类型是目录,所属菜单必须为默认顶级菜单或者目录"),
+    OPERATION_MENU_PERMISSION_MENU_ERROR(2000007,"操作后的菜单类型是菜单,所属菜单必须为目录类型"),
+    OPERATION_MENU_PERMISSION_BTN_ERROR(2000008,"操作后的菜单类型是按钮,所属菜单必须为菜单类型"),
     OPERATION_MENU_PERMISSION_URL_NOT_NULL(2000009,"菜单权限的url不能为空"),
     OPERATION_MENU_PERMISSION_URL_PERMS_NULL(2000010,"菜单权限的标识符不能为空"),
     OPERATION_MENU_PERMISSION_URL_METHOD_NULL(2000011,"菜单权限的请求方式不能为空"),

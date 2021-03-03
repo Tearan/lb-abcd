@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -33,7 +34,9 @@ import java.util.Date;
 @ApiModel(value = "Permission对象")
 @Table(name = "sys_permission")
 @TableName("sys_permission")
-public class Permission extends BaseEntity {
+public class Permission extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")

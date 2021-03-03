@@ -33,6 +33,7 @@ public class RedisCache<K,V> implements Cache<K,V> {
         this.cacheKey= Constant.IDENTIFY_CACHE_KEY;
         this.redisUtil = redisUtil;
     }
+
     @Override
     public V get(K key) throws CacheException {
         log.info("Shiro从缓存中获取数据KEY值[{}]",key);

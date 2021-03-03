@@ -32,36 +32,28 @@ public class Rs<R> {
     @ApiModelProperty(value = "响应的数据")
     private R data;
 
-    public Rs(RsCode rsCode, R data) {
-        this.code = rsCode.getCode();
-        this.msg = rsCode.getMsg();
-        this.data = data;
-    }
-
-    public Rs(APIException responseCode, R data){
+    public Rs(RsCode responseCode, R data){
         this.code = responseCode.getCode();
         this.msg = responseCode.getMsg();
         this.data = data;
     }
 
-    public Rs(APIException responseCode){
+    public Rs(RsCode responseCode){
         this.code = responseCode.getCode();
         this.msg = responseCode.getMsg();
         this.data = null;
     }
 
-    public Rs(int code, R data) {
+    public Rs(Integer code, R data) {
         this.code = code;
         this.data = data;
-        this.msg=null;
+        this.msg = null;
     }
-
-    public Rs(int code, String msg, R data) {
+    public Rs(Integer code, String msg, R data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
-
     public Rs(int code, String msg) {
         this.code = code;
         this.msg = msg;
