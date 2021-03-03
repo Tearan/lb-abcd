@@ -41,7 +41,7 @@ public class ShiroConfig {
 
     @Bean
     public CustomRealm customRealm(){
-        CustomRealm customRealm=new CustomRealm();
+        CustomRealm customRealm = new CustomRealm();
         customRealm.setCredentialsMatcher(customHashedCredentialsMatcher());
         customRealm.setCacheManager(redisCacheManager());
         return customRealm;
@@ -49,7 +49,7 @@ public class ShiroConfig {
 
     @Bean
     public SecurityManager securityManager(){
-        DefaultWebSecurityManager defaultWebSecurityManager=new DefaultWebSecurityManager();
+        DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(customRealm());
         return defaultWebSecurityManager;
     }
@@ -75,7 +75,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/upload/image/**","anon");
 
         /** 后端下载接口设置开放性*/
-        //filterChainDefinitionMap.put("/api/file/*","anon");
         filterChainDefinitionMap.put("/index/**","anon");
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/register","anon");

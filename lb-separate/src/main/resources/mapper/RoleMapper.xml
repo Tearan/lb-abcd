@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.system.mapper.RoleMapper">
+<mapper namespace="com.lb.abcd.shiro.dao.RoleDao">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lb.abcd.shiro.entity.Role">
@@ -19,25 +19,34 @@
     </sql>
 
     <select id="getRoleByUserId" parameterType="String" resultMap="BaseResultMap">
-        select r.* from sys_role r
-        left join sys_user_role ur on (r.id=ur.role_id)
-        left join sys_user u on (ur.user_id=u.id)
-        where u.id=#{userId}
-        and u.deleted=1
+        select
+            r.*
+        from
+            sys_role as r
+        left join
+            sys_user_role as ur on (r.id = ur.role_id)
+        left join
+            sys_user as u on (ur.user_id = u.id)
+        where
+            u.id = #{userId}
+            and u.deleted = 1
     </select>
 
-    <select id="getRoles" parameterType="com.system.vo.request.RolePageReqVO" resultMap="BaseResultMap">
-        select * from sys_role r
+    <select id="getRoles" parameterType="com.lb.abcd.shiro.vo.request.RolePageReqVO" resultMap="BaseResultMap">
+        select
+            *
+        from
+            sys_role as r
         <where>
-            r.deleted=1
+            r.deleted = 1
             <if test="vo.roleId !=null and vo.roleId != ''">
-                and r.id=#{vo.roleId}
+                and r.id = #{vo.roleId}
             </if>
             <if test="vo.roleName !=null and vo.roleName != ''">
                 and r.name like concat('%',#{vo.roleName},'%')
             </if>
             <if test="vo.status !=null and vo.status != '' or vo.status==0">
-                and r.status =#{vo.status}
+                and r.status = #{vo.status}
             </if>
             <if test="vo.startTime !=null and vo.startTime != ''">
                 and r.create_time &gt;= #{vo.startTime}

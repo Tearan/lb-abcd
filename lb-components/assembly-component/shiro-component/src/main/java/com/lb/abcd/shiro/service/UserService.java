@@ -1,11 +1,11 @@
 package com.lb.abcd.shiro.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.lb.abcd.shiro.entity.User;
 import com.lb.abcd.shiro.vo.request.*;
 import com.lb.abcd.shiro.vo.response.LoginRespVO;
-import com.lb.abcd.shiro.vo.response.PageVO;
+import com.lb.abcd.system.vo.response.PageVO;
 import com.lb.abcd.shiro.vo.response.UserOwnRoleRespVO;
-import com.lb.abcd.system.service.BaseService;
 
 import java.util.List;
 
@@ -16,75 +16,100 @@ import java.util.List;
  * @Date 2021/1/31 14:16
  * @Version 1.0
  */
-public interface UserService extends BaseService<User> {
+public interface UserService extends IService<User> {
 
     /**
      * 获取所有用户信息
      */
-    public List<User> getUser();
+    List<User> getUser();
 
-    /*
-    获取所有用户信息(分页)
+    /**
+     * 获取所有用户信息(分页)
+     * @param vo
+     * @return
      */
-    public PageVO<User> pageInfo(UserPageReqVO vo);
+    PageVO<User> pageInfo(UserPageReqVO vo);
 
-    /*
-    登录
+    /***
+     * 登录
+     * @param vo
+     * @return
      */
-    public LoginRespVO login(LoginReqVO vo);
+    LoginRespVO login(LoginReqVO vo);
 
-    /*
-    注册
+    /**
+     * 注册
+     * @param vo
      */
-    public void register(RegisterReqVO vo);
+    void register(RegisterReqVO vo);
 
-    /*
-    获取当前用户信息
+    /**
+     * 获取当前用户信息
+     * @param userId
+     * @return
      */
-    public User getUser(String userId);
+    User getUser(String userId);
 
-    /*
-    修改当前用户密码
+    /**
+     * 修改当前用户密码
+     * @param vo
+     * @param accessToken
+     * @param refreshToken
      */
-    public void updatePwd(UserUpdatePwdReqVO vo, String accessToken, String refreshToken);
+    void updatePwd(UserUpdatePwdReqVO vo, String accessToken, String refreshToken);
 
-    /*
-    修改当前用户信息
+    /**
+     *  修改当前用户信息
+     * @param user
+     * @param userId
      */
-    public void updateUser(User user,String userId);
+    void updateUser(User user,String userId);
 
-    /*
-    退出系统
+    /**
+     * 退出系统
+     * @param accessToken
+     * @param refreshToken
      */
-    public void logout(String accessToken,String refreshToken);
+    void logout(String accessToken,String refreshToken);
 
-    /*
-    根据刷新token获取新的业务token
+    /**
+     * 根据刷新token获取新的业务token
+     * @param refreshToken
+     * @return
      */
-    public String token(String refreshToken);
+    String token(String refreshToken);
 
-    /*
-    新增用户
+    /**
+     * 新增用户
+     * @param vo
+     * @param userId
      */
-    public void add(UserAddReqVO vo, String userId);
+    void add(UserAddReqVO vo, String userId);
 
-    /*
-    更新用户
+    /**
+     * 更新用户
+     * @param vo
+     * @param userId
      */
-    public void update(UserUpdateReqVO vo, String userId);
+    void update(UserUpdateReqVO vo, String userId);
 
-    /*
-    删除用户
+    /**
+     * 删除用户
+     * @param userIds
+     * @param userId
      */
-    public void delete(List<String> userIds,String userId);
+    void delete(List<String> userIds,String userId);
 
-    /*
-    赋予用户角色
+    /**
+     * 赋予用户角色
+     * @param vo
      */
-    public void updateUserRole(UserOwnRoleReqVO vo);
+    void updateUserRole(UserOwnRoleReqVO vo);
 
-    /*
-    查询用户拥有的角色
+    /**
+     * 查询用户拥有的角色
+     * @param userId
+     * @return
      */
-    public UserOwnRoleRespVO getUserOwnRole(String userId);
+    UserOwnRoleRespVO getUserOwnRole(String userId);
 }

@@ -25,7 +25,7 @@ public class LoginReqVO {
     private String password;
 
     @ApiModelProperty(value ="验证码")
-    @NotBlank(message = "验证码不能为空")
+   // @NotBlank(message = "验证码不能为空")
     private String code;
 
     @ApiModelProperty(value = "登录类型 0：pc；1：App")

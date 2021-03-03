@@ -28,8 +28,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "LOG对象",description = "系统日志")
-@Table(name = "sys_log",schema = "public")
-@TableName("user")
+@Table(name = "sys_log")
+@TableName("sys_log")
 public class SysLog extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

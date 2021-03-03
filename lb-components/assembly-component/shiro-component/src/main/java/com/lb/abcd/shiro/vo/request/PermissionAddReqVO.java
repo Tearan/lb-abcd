@@ -36,11 +36,11 @@ public class PermissionAddReqVO {
     @ApiModelProperty(value = "排序码")
     private Integer orderNum;
 
-    @ApiModelProperty(value = "菜单权限类型(0:目录;1:菜单;2:按钮)")
+    @ApiModelProperty(value = "菜单权限类型(1:目录;2:菜单;3:按钮)")
     @NotNull(message = "菜单权限类型不能为空")
     private Integer type;
 
-    @ApiModelProperty(value = "状态0:正常 1：禁用")
+    @ApiModelProperty(value = "状态1:正常;0：禁用")
     private Integer status;
 
     @ApiModelProperty(value = "编码(前后端分离 前段对按钮显示隐藏控制 btn-permission-search 代表 菜单权限管理的列表查询按钮)")

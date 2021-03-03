@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Version 1.0
  */
 
-@RestController
-public class BaseController <Biz extends BaseService, Entity extends BaseEntity>{
+public class BaseController {
 
     public String getUserId(HttpServletRequest request){
         String accessToken=request.getHeader(Constant.ACCESS_TOKEN);

@@ -104,6 +104,6 @@ public class MyLogAspect {
         sysLog.setId(IDUtils.generateId());
         sysLog.setCreateTime(new Date());
         log.info(sysLog.toString());
-        sysLogDao.save(sysLog);
+        sysLogDao.insert(sysLog);
     }
 }

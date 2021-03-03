@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lb.abcd.system.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -26,9 +27,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value="用戶角色")
-@Table(name = "user_role",schema = "public")
-@TableName("user_role")
-public class UserRole {
+@Table(name = "sys_user_role")
+@TableName("sys_user_role")
+public class UserRole extends BaseEntity {
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")

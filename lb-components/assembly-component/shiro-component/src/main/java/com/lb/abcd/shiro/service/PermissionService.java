@@ -1,11 +1,10 @@
 package com.lb.abcd.shiro.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.lb.abcd.shiro.entity.Permission;
-import com.lb.abcd.shiro.entity.Role;
 import com.lb.abcd.shiro.vo.request.PermissionAddReqVO;
 import com.lb.abcd.shiro.vo.request.PermissionUpdateReqVO;
 import com.lb.abcd.shiro.vo.response.PermissionRespNodeVO;
-import com.lb.abcd.system.service.BaseService;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  * @Date 2021/3/1 14:42
  * @Version 1.0
  */
-public interface PermissionService extends BaseService<Permission> {
+public interface PermissionService extends IService<Permission> {
 
     /**
      * 根据userId获取权限信息

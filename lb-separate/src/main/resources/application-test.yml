@@ -6,7 +6,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/lb-abcd?currentSchema=sys&stringtype=unspecified
+    #useUnicode=true&characterEncoding=utf8&currentSchema=public&stringtype=unspecified
+    url: jdbc:postgresql://127.0.0.1:5432/lb-abcd?useUnicode=true&characterEncoding=utf8&currentSchema=public&stringtype=unspecified
     username: lbcs
     password: 123456
     hikari:
@@ -62,8 +63,16 @@ mybatis-plus:
     map-underscore-to-camel-case: true
 
   # 配置mapper xml文件的路径
-  mapper-locations: classpath*:mapper/*Mapper.xml
+  mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.lb.abcd.**.entity
+
+
+  #mybatis:
+  # 配置mapper xml文件的路径
+  #mapper-locations: classpath*:mapper/*.xml
+  # 配置映射类所在的包名
+  #type-aliases-package: com.lb.abcd.**.entity
+
 
 ## JWT相关配置
 jwt:

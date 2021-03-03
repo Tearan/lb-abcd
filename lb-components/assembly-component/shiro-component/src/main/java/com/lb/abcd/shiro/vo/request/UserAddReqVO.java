@@ -32,9 +32,9 @@ public class UserAddReqVO {
     @NotBlank(message = "所属部门不能为空")
     private String deptId;
 
-    @ApiModelProperty(value = "创建来源(0.web 1.android 2.ios )")
+    @ApiModelProperty(value = "创建来源(1.web 2.android 3.ios )")
     private String createWhere;
 
-    @ApiModelProperty(value = "账户状态(0.正常 1.锁定 )")
+    @ApiModelProperty(value = "账户状态(1.正常 0.锁定 )")
     private Integer status;
 }

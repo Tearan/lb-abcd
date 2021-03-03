@@ -28,14 +28,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "角色")
-@Table(name = "sys_role",schema = "public")
+@Table(name = "sys_role")
 @TableName("role")
 public class Role extends BaseEntity {
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")
     @Id
-    private Integer id;
+    private String id;
 
     @ApiModelProperty(value = "角色名称")
     @TableField("name")
@@ -44,7 +44,7 @@ public class Role extends BaseEntity {
     @TableField("description")
     private String description;
 
-    @ApiModelProperty(value = "状态(0:正常,1:弃用)")
+    @ApiModelProperty(value = "状态(1:正常;0:弃用)")
     @TableField("status")
     private Integer status;
 
@@ -56,7 +56,7 @@ public class Role extends BaseEntity {
     @TableField("update_time")
     private Date updateTime;
 
-    @ApiModelProperty(value = "是否删除(0.未删除;1.已删除)")
+    @ApiModelProperty(value = "是否删除(1未删除；0已删除)")
     @TableField("deleted")
     private Integer deleted;
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lb.abcd.system.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -31,9 +32,9 @@ import java.util.Date;
 /** 无参构造函数*/
 @NoArgsConstructor
 @ApiModel(value = "Dept对象")
-@Table(name = "sys_dept",schema = "public")
+@Table(name = "sys_dept")
 @TableName("sys_dept")
-public class Dept {
+public class Dept extends BaseEntity {
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")
@@ -48,7 +49,7 @@ public class Dept {
     @TableField("pid")
     private String pid;
 
-    @ApiModelProperty(value = "状态(0:正常；1:弃用)")
+    @ApiModelProperty(value = "状态(1:正常;0:弃用)")
     @TableField("status")
     private Integer status;
 
@@ -72,7 +73,7 @@ public class Dept {
     @TableField("update_time")
     private Date updateTime;
 
-    @ApiModelProperty(value = "是否删除(0未删除；1已删除)")
+    @ApiModelProperty(value = "是否删除(1未删除;0已删除)")
     @TableField("deleted")
     private Integer deleted;
 

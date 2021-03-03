@@ -31,7 +31,7 @@ import java.util.Date;
 /** 无参构造函数*/
 @NoArgsConstructor
 @ApiModel(value = "Permission对象")
-@Table(name = "sys_permission",schema = "public")
+@Table(name = "sys_permission")
 @TableName("sys_permission")
 public class Permission extends BaseEntity {
 
@@ -71,11 +71,11 @@ public class Permission extends BaseEntity {
     @TableField("order_num")
     private Integer orderNum;
 
-    @ApiModelProperty(value = "菜单权限类型(0:目录;1:菜单;2:按钮)")
+    @ApiModelProperty(value = "菜单权限类型(1:目录;2:菜单;3:按钮)")
     @TableField("type")
     private Integer type;
 
-    @ApiModelProperty(value = "状态0:正常 1：禁用")
+    @ApiModelProperty(value = "状态1:正常 0：禁用")
     @TableField("status")
     private Integer status;
 
@@ -87,7 +87,7 @@ public class Permission extends BaseEntity {
     @TableField("update_time")
     private Date updateTime;
 
-    @ApiModelProperty(value = "是否删除(0未删除；1已删除)")
+    @ApiModelProperty(value = "是否删除(1未删除；0已删除)")
     @TableField("deleted")
     private Integer deleted;
 }

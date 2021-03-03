@@ -1,12 +1,11 @@
 package com.lb.abcd.shiro.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.lb.abcd.shiro.entity.Role;
-import com.lb.abcd.shiro.entity.User;
 import com.lb.abcd.shiro.vo.request.AddRoleReqVO;
 import com.lb.abcd.shiro.vo.request.RolePageReqVO;
 import com.lb.abcd.shiro.vo.request.RoleUpdateReqVO;
-import com.lb.abcd.shiro.vo.response.PageVO;
-import com.lb.abcd.system.service.BaseService;
+import com.lb.abcd.system.vo.response.PageVO;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @Date 2021/3/1 14:40
  * @Version 1.0
  */
-public interface RoleService extends BaseService<Role> {
+public interface RoleService extends IService<Role> {
 
     /**
      * 根据userId获取角色

@@ -1,10 +1,14 @@
 package com.lb.abcd.shiro.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lb.abcd.shiro.entity.Role;
-import com.lb.abcd.shiro.entity.User;
-import com.lb.abcd.system.mapper.IMapper;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.lb.abcd.shiro.vo.request.RolePageReqVO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * @ClassName RoleDao
@@ -14,5 +18,16 @@ import org.springframework.stereotype.Repository;
  * @Version 1.0
  */
 
-public interface RoleDao extends IMapper<Role> {
+@Mapper
+public interface RoleDao extends BaseMapper<Role> {
+
+    /*
+    根据userId获取角色
+     */
+    public List<Role> getRoleByUserId(String userId);
+
+    /*
+    分页获取所有角色
+     */
+    public IPage<Role> getRoles(Page page, @Param("vo") RolePageReqVO vo);
 }

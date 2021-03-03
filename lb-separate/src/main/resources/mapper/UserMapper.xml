@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lb.abcd.shiro.dao.UserDao">
+<mapper namespace = "com.lb.abcd.shiro.dao.UserDao">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lb.abcd.shiro.entity.User">
@@ -28,21 +28,31 @@
         id, username, salt, password, phone, dept_id, real_name, nick_name, email, status, sex, deleted, create_id, update_id, create_where, create_time, update_time
     </sql>
 
-    <select id="getUser" parameterType="String" resultType="com.lb.abcd.shiro.entity.User">
-        select u.*,p.name deptName from sys_user u
-        left join sys_dept p on (u.dept_id=p.id)
-        where u.id = #{userId}
-        and u.deleted = 1
+    <select id="getUser" parameterType= "String" resultType="com.lb.abcd.shiro.entity.User">
+        select
+            u.*,
+            p.name as deptName
+        from
+            sys_user as u
+        left join
+            sys_dept as p on (u.dept_id = p.id)
+        where
+            u.id = #{userId}
+            and u.deleted = 1
     </select>
 
     <select id="selectAll" resultType="com.lb.abcd.shiro.entity.User" parameterType="com.lb.abcd.shiro.vo.request.UserPageReqVO">
-        select u.*,d.name deptName
-        from sys_user u
-        LEFT JOIN sys_dept d ON (u.dept_id = d.id)
+        select
+            u.*,
+            d.name as deptName
+        from
+            sys_user as u
+        LEFT JOIN
+            sys_dept d ON (u.dept_id = d.id)
         <where>
-            u.deleted=1
+            u.deleted = 1
             <if test="vo.userId !=null and vo.userId != ''">
-                and u.id=#{vo.userId}
+                and u.id = #{vo.userId}
             </if>
             <if test="vo.username !=null and vo.username != ''">
                 and u.username like concat('%',#{vo.username},'%')

@@ -46,13 +46,20 @@
 
 		<dependency>
 			<groupId>com.baomidou</groupId>
-			<artifactId>mybatisplus-spring-boot-starter</artifactId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+			<version>2.5.7</version>
+		</dependency>-->
+
+		<!--<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus</artifactId>
 		</dependency>
+-->
 		<dependency>
 			<groupId>com.lb.abcd</groupId>
 			<artifactId>jwt-component</artifactId>

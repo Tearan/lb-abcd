@@ -29,22 +29,22 @@ public class CustomHashedCredentialsMatcher extends HashedCredentialsMatcher {
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
         JwtToken customUsernamePasswordToken= (JwtToken) token;
 
-        String accessToken= (String) customUsernamePasswordToken.getPrincipal();
+        String accessToken = (String) customUsernamePasswordToken.getPrincipal();
 
-        String userId= JWTUtil.getUserId(accessToken);
+        String userId = JWTUtil.getUserId(accessToken);
 
         /** 判断用户是否被锁定*/
-        if(redisUtil.hasKey(Constant.ACCOUNT_LOCK_KEY+userId)){
+        if(redisUtil.hasKey(Constant.ACCOUNT_LOCK_KEY + userId)){
             throw new APIException(RsCode.ACCOUNT_LOCK);
         }
 
         /** 判断用户是否被删除*/
-        if(redisUtil.hasKey(Constant.DELETED_USER_KEY+userId)){
+        if(redisUtil.hasKey(Constant.DELETED_USER_KEY + userId)){
             throw new APIException(RsCode.ACCOUNT_HAS_DELETED_ERROR);
         }
 
         /** 判断token 是否主动登出*/
-        if(redisUtil.hasKey(Constant.JWT_ACCESS_TOKEN_BLACKLIST+accessToken)){
+        if(redisUtil.hasKey(Constant.JWT_ACCESS_TOKEN_BLACKLIST + accessToken)){
             throw new APIException(RsCode.TOKEN_ERROR);
         }
 
@@ -54,8 +54,8 @@ public class CustomHashedCredentialsMatcher extends HashedCredentialsMatcher {
         }
 
         /** 判断这个登录用户是否要主动去刷新*/
-        if(redisUtil.hasKey(Constant.JWT_REFRESH_KEY+userId)){
-            if(redisUtil.getExpire(Constant.JWT_REFRESH_KEY+userId, TimeUnit.MILLISECONDS)>JWTUtil.getRemainingTime(accessToken)){
+        if(redisUtil.hasKey(Constant.JWT_REFRESH_KEY + userId)){
+            if(redisUtil.getExpire(Constant.JWT_REFRESH_KEY + userId, TimeUnit.MILLISECONDS) > JWTUtil.getRemainingTime(accessToken)){
                 throw new APIException(RsCode.TOKEN_PAST_DUE);
             }
         }

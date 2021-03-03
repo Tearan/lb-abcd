@@ -30,9 +30,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "User对象")
-@Table(name = "sys_user",schema = "public")
+@Table(name = "sys_user")
 @TableName("sys_user")
 public class User extends BaseEntity {
+
+
+    // 测试角色，只拥有查看的权限
+    public static final String roleId = "6293142a-2e7c-4df5-87d1-4781e476d20d";
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")
@@ -71,15 +75,15 @@ public class User extends BaseEntity {
     @TableField("email")
     private String email;
 
-    @ApiModelProperty(value = "账户状态(0.正常;1.锁定)")
+    @ApiModelProperty(value = "账户状态(1.正常;2.锁定 )")
     @TableField("status")
     private Integer status;
 
-    @ApiModelProperty(value = "性别(0.男;1.女)")
+    @ApiModelProperty(value = "性别(1.男 2.女)")
     @TableField("sex")
     private Integer sex;
 
-    @ApiModelProperty(value = "是否删除(0.未删除;1.已删除)")
+    @ApiModelProperty(value = "是否删除(1未删除;0已删除)")
     @TableField("deleted")
     private Integer deleted;
 
@@ -91,7 +95,7 @@ public class User extends BaseEntity {
     @TableField("update_id")
     private String updateId;
 
-    @ApiModelProperty(value = "创建来源(0.web;1.android;2.ios )")
+    @ApiModelProperty(value = "创建来源(1.web;2.android;3.ios)")
     @TableField("create_where")
     private Integer createWhere;
 
@@ -104,5 +108,6 @@ public class User extends BaseEntity {
 
     @ApiModelProperty(value = "部门名称")
     @Transient
+    @TableField(exist = false)
     private String deptName;
 }

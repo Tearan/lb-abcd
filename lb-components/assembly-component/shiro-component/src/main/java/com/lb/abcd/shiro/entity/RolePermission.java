@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lb.abcd.system.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,9 @@ import java.util.Date;
 /** 无参构造函数*/
 @NoArgsConstructor
 @ApiModel(value = "RolePermission对象")
-@Table(name = "sys_role_permission",schema = "public")
+@Table(name = "sys_role_permission")
 @TableName("sys_role_permission")
-public class RolePermission {
+public class RolePermission extends BaseEntity {
 
     @TableId(value = "id",type = IdType.INPUT)
     @ApiModelProperty(value = "id")

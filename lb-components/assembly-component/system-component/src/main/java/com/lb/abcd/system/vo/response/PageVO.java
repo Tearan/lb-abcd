@@ -1,4 +1,4 @@
-package com.lb.abcd.shiro.vo.response;
+package com.lb.abcd.system.vo.response;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

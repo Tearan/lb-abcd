@@ -48,21 +48,20 @@ public class CustomRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        String accessToken= (String) principalCollection.getPrimaryPrincipal();
+        String accessToken = (String) principalCollection.getPrimaryPrincipal();
 
-        SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        String userId= JWTUtil.getUserId(accessToken);
+        String userId = JWTUtil.getUserId(accessToken);
 
         /** 刷新token存在或者业务token过期，则重新从数据库中获取权限信息*/
         if(redisUtil.hasKey(Constant.JWT_REFRESH_KEY + userId) && redisUtil.getExpire(Constant.JWT_REFRESH_KEY + userId, TimeUnit.MILLISECONDS) > JWTUtil.getRemainingTime(accessToken)){
             List<String> roleNames = roleService.getRoleNames(userId);
-            if(roleNames!=null&&!roleNames.isEmpty()){
+            if(roleNames != null && !roleNames.isEmpty()){
                 info.addRoles(roleNames);
             }
-
-            Set<String> permissions=permissionService.getPerms(userId).stream().collect(Collectors.toSet());
-            if(permissions!=null){
+            Set<String> permissions = permissionService.getPerms(userId).stream().collect(Collectors.toSet());
+            if(permissions != null){
                 info.addStringPermissions(permissions);
             }
         }
@@ -70,7 +69,7 @@ public class CustomRealm extends AuthorizingRealm {
         /** 否则解析业务token，获取用户的角色和权限信息*/
         else {
             /** 返回roles */
-            Claims claims= JWTUtil.getClaimsFromToken(accessToken);
+            Claims claims = JWTUtil.getClaimsFromToken(accessToken);
             if(claims.get(Constant.JWT_ROLES_KEY) != null){
                 info.addRoles((Collection<String>) claims.get(Constant.JWT_ROLES_KEY));
             }

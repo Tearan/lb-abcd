@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.system.mapper.LogMapper">
+<mapper namespace="com.lb.abcd.dao.SysLogDao">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lb.abcd.entity.SysLog">
@@ -20,11 +20,14 @@
         id, user_id, username, operation, time, method, params, ip, create_time
     </sql>
 
-    <select id="selectAll" parameterType="com.system.vo.request.LogPageReqVO" resultMap="BaseResultMap">
-    select * from sys_log log
+    <select id="selectAll" parameterType="com.lb.abcd.vo.request.SysLogPageReqVO" resultMap="BaseResultMap">
+        select
+            *
+        from
+            sys_log as log
         <where>
             <if test="vo.userId !=null and vo.userId != ''">
-                and log.user_id=#{vo.userId}
+                and log.user_id = #{vo.userId}
             </if>
             <if test="vo.operation !=null and vo.operation != ''">
                 and log.operation like concat('%',#{vo.operation},'%')
@@ -39,6 +42,7 @@
                 and log.create_time &lt;= #{vo.endTime}
             </if>
         </where>
-        order by create_time desc
+        order by
+            create_time desc
     </select>
 </mapper>

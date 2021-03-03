@@ -28,7 +28,7 @@ public class UserPageReqVO {
     @ApiModelProperty(value = "昵称")
     private String nickName;
 
-    @ApiModelProperty(value = "账户状态(0.正常 1.锁定 ")
+    @ApiModelProperty(value = "账户状态(1.正常 0.锁定 ")
     private Integer status;
 
     @ApiModelProperty(value = "开始时间")

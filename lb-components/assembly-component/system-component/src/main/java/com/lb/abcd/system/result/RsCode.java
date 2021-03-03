@@ -37,10 +37,16 @@ public enum RsCode {
 
     /** （授权异常） 请求要求身份验证。 客户端需要跳转到登录页面重新登录: 2010002 */
     TOKEN_PAST_DUE(2010002,"token失效,请刷新token"),
-    
-    /** 没有权限禁止访问: 2010003*/
-    NOT_PERMISSION(2010003,"没有权限访问该资源"),
-    
+
+    ACCOUNT_LOCK_TIP(2010012,"该账号被锁定,请联系系统管理员"),
+    OPERATION_MENU_PERMISSION_UPDATE(2010013,"操作的菜单权限存在子集关联不允许变更"),
+    ROLE_PERMISSION_RELATION(2010014, "该菜单权限存在子集关联，不允许删除"),
+    NOT_PERMISSION_DELETED_DEPT(2010015,"该组织机构下还关联着用户，不允许删除"),
+    OLD_PASSWORD_ERROR(2010016,"旧密码不匹配"),
+
+    /** 没有权限禁止访问: 2030001*/
+    NOT_PERMISSION(2030001,"没有权限访问该资源"),
+
     /** 系统主动抛出的业务异常: 200xxxx*/
     DATA_ERROR( 2000001,"传入数据异常"),
     METHOD_IDENTITY_ERROR( 2000002,"数据校验异常"),

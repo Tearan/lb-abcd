@@ -27,7 +27,7 @@ public class RoleUpdateReqVO {
     @ApiModelProperty(value = "角色描述")
     private String description;
 
-    @ApiModelProperty(value = "状态(0:正常;1:弃用)")
+    @ApiModelProperty(value = "状态(1:正常;0:弃用)")
     private Integer status;
 
     @ApiModelProperty(value = "所拥有的菜单权限")

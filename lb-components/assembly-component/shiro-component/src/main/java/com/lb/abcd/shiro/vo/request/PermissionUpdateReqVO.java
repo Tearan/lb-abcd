@@ -19,7 +19,7 @@ public class PermissionUpdateReqVO {
     @NotBlank(message = "id 不能为空")
     private String id;
 
-    @ApiModelProperty(value = "状态0:正常 1：禁用")
+    @ApiModelProperty(value = "状态1:正常;0：禁用")
     private Integer status;
 
     @ApiModelProperty(value = "菜单权限名称")
@@ -40,7 +40,7 @@ public class PermissionUpdateReqVO {
     @ApiModelProperty(value = "排序码")
     private Integer orderNum;
 
-    @ApiModelProperty(value = "菜单权限类型(0:目录;1:菜单;2:按钮)")
+    @ApiModelProperty(value = "菜单权限类型(1:目录;2:菜单;3:按钮)")
 
     private Integer type;
 
