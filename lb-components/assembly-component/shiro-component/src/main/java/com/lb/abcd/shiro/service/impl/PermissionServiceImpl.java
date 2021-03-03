@@ -131,7 +131,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
         }
 
         /** 如果更新的权限下面有子集或者权限状态不同，则禁止更新*/
-        if(!permission.getPid().equals(vo.getPid())||!permission.getStatus().equals(vo.getStatus())){
+        if(!permission.getPid().equals(vo.getPid()) || !permission.getStatus().equals(vo.getStatus())){
             QueryWrapper<Permission> wrapper = new QueryWrapper<>();
             wrapper.eq("deleted",1).eq("pid",vo.getId());
             List<Permission> permissions = this.baseMapper.selectList(wrapper);
