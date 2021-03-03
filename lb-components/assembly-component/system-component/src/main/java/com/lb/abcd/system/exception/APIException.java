@@ -29,8 +29,15 @@ public class APIException extends RuntimeException{
         this(RsCode.SYSTEM_ERROR);
     }
 
-    public APIException(RsCode failed) {
-        this.code = failed.getCode();
-        this.msg = failed.getMsg();
+    public APIException(RsCode rsCode){
+        this(rsCode.getCode(), rsCode.getMsg());
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 }

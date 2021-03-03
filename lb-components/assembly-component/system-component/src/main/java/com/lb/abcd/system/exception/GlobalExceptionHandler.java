@@ -3,8 +3,6 @@ package com.lb.abcd.system.exception;
 import com.lb.abcd.system.result.Rs;
 import com.lb.abcd.system.result.RsCode;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.ShiroException;
-import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;
@@ -27,6 +25,12 @@ import java.util.List;
 @Slf4j
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(value = Exception.class)
+    public Rs exception(Exception e){
+        log.error("Exception,{},{}",e.getLocalizedMessage(),e);
+        return Rs.getResult(RsCode.SYSTEM_ERROR);
+    }
+
     /**
      * 自定义异常APIException
      */
@@ -34,7 +38,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Rs<Object> APIExceptionHandler(APIException e) {
         log.error("api异常");
-        return new Rs<>(RsCode.SYSTEM_ERROR, e.getMsg());
+        return new Rs<>(e.getCode(), e.getMsg());
     }
 
     /**
@@ -56,5 +60,11 @@ public class GlobalExceptionHandler {
         }
         /** 然后提取错误提示信息进行返回*/
         return new Rs<>(RsCode.DATA_ERROR, list);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public Rs unauthorizedException(UnauthorizedException e){
+        log.error("UnauthorizedException,{},{}",e.getLocalizedMessage(),e);
+        return Rs.getResult(RsCode.NOT_PERMISSION);
     }
 }

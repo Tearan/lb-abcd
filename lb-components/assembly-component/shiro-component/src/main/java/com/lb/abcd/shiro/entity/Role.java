@@ -29,7 +29,7 @@ import java.util.List;
 @NoArgsConstructor
 @ApiModel(value = "角色")
 @Table(name = "sys_role")
-@TableName("role")
+@TableName("sys_role")
 public class Role extends BaseEntity {
 
     @TableId(value = "id",type = IdType.INPUT)

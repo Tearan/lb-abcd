@@ -9,7 +9,6 @@ import lombok.Getter;
  * @Date 2021/2/2 15:46
  * @Version 1.0
  */
-
 @Getter
 public enum RsCode {
 
@@ -77,4 +76,5 @@ public enum RsCode {
         this.code = code;
         this.msg = msg;
     }
+
 }

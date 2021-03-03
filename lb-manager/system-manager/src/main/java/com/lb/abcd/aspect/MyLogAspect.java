@@ -29,9 +29,11 @@ import java.util.Date;
  * @Version 1.0
  */
 
-@Aspect
-@Component
 @Slf4j
+/** 标注增强处理类（切面类）*/
+@Aspect
+/** 由Spring容器管理*/
+@Component
 public class MyLogAspect {
 
     @Autowired
@@ -42,6 +44,7 @@ public class MyLogAspect {
 
     }
 
+    /** 定义增强，pointcut连接点使用@annotation（xxx）进行定义*/
     @Around("logPointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         long beginTime = System.currentTimeMillis();
@@ -78,9 +81,9 @@ public class MyLogAspect {
         try {
             /** 请求的参数*/
             Object[] args = joinPoint.getArgs();
-            String params=null;
+            String params = null;
             if(args.length != 0){
-                params= JSON.toJSONString(args);
+                params = JSON.toJSONString(args);
             }
 
             sysLog.setParams(params);

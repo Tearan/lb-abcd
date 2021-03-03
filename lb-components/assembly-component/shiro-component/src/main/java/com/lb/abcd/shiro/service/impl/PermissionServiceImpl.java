@@ -39,7 +39,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission> implements PermissionService {
 
-
     @Autowired
     private RedisUtil redisUtil;
 
@@ -184,7 +183,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
         }
         /** 当权限删除的时候，redis中的权限也应该更新*/
         List<String> userIds = this.baseMapper.getUserIds(menuId);
-        for(String userId:userIds){
+        for(String userId : userIds){
 
             /** 主动去刷新 token*/
             redisUtil.set(Constant.JWT_REFRESH_KEY + userId,userId,jwtConfig.getAccessTokenExpireTime().toMillis(), TimeUnit.MILLISECONDS);

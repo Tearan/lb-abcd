@@ -27,7 +27,7 @@ public class CustomHashedCredentialsMatcher extends HashedCredentialsMatcher {
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        JwtToken customUsernamePasswordToken= (JwtToken) token;
+        JwtToken customUsernamePasswordToken = (JwtToken) token;
 
         String accessToken = (String) customUsernamePasswordToken.getPrincipal();
 

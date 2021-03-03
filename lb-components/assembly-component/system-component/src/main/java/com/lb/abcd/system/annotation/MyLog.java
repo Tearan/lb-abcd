@@ -4,13 +4,15 @@ import java.lang.annotation.*;
 
 /**
  * @ClassName MyLog
- * @Description TODO
+ * @Description 注解类
  * @Author Terran
  * @Date 2021/2/26 16:49
  * @Version 1.0
  */
 
+/** 用于方法*/
 @Target(ElementType.METHOD)
+/** 运行时有效*/
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface MyLog {
