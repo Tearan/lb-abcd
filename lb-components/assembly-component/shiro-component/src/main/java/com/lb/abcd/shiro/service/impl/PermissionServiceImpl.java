@@ -125,7 +125,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
     @Transactional
     public void update(PermissionUpdateReqVO vo) {
         Permission permission = this.baseMapper.selectById(vo.getId());
-        if(permission==null){
+        if(permission == null){
             log.info("传入的id在数据库中不存在");
             throw new APIException(RsCode.DATA_ERROR);
         }

@@ -34,7 +34,7 @@ public class RedisUtil {
      * 是否存在key
      */
     public Boolean hasKey(String key) {
-        if (null==key){
+        if (null == key){
             return false;
         }
         return redisTemplate.hasKey(key);
@@ -44,7 +44,7 @@ public class RedisUtil {
      * 删除key
      */
     public Boolean delete(String key) {
-        if (null==key){
+        if (null == key){
             return false;
         }
         return redisTemplate.delete(key);
@@ -61,7 +61,7 @@ public class RedisUtil {
      * 设置过期时间
      */
     public Boolean expire(String key, long timeout, TimeUnit unit) {
-        if (null==key||null==unit){
+        if (null == key || null==unit){
             return false;
         }
         return redisTemplate.expire(key, timeout, unit);
@@ -71,7 +71,7 @@ public class RedisUtil {
      * 查找匹配的key
      */
     public Set<String> keys(String pattern) {
-        if (null==pattern){
+        if (null == pattern){
             return null;
         }
         return redisTemplate.keys(pattern);
@@ -81,7 +81,7 @@ public class RedisUtil {
      * 移除 key 的过期时间，key 将持久保持
      */
     public Boolean persist(String key) {
-        if (null==key){
+        if (null == key){
             return false;
         }
         return redisTemplate.persist(key);

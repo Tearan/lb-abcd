@@ -237,7 +237,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         BeanUtils.copyProperties(vo,user);
         user.setId(IDUtils.generateId());
         String salt = PasswordUtils.getSalt();
-        String password=PasswordUtils.encode(vo.getPassword(),salt);
+        String password = PasswordUtils.encode(vo.getPassword(),salt);
         user.setPassword(password);
         user.setSalt(salt);
         user.setCreateTime(new Date());
@@ -255,8 +255,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         if(StringUtils.isEmpty(vo.getPassword())){
             user.setPassword(null);
         }else {
-            String salt=PasswordUtils.getSalt();
-            String password=PasswordUtils.encode(vo.getPassword(),salt);
+            String salt = PasswordUtils.getSalt();
+            String password = PasswordUtils.encode(vo.getPassword(),salt);
             user.setSalt(salt);
             user.setPassword(password);
         }

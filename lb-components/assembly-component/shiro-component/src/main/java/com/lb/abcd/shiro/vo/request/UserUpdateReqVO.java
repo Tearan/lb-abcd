@@ -32,7 +32,7 @@ public class UserUpdateReqVO {
     @ApiModelProperty(value = "手机号")
     private String phone;
 
-    @ApiModelProperty(value = "账户状态(1.正常 0.锁定 )")
+    @ApiModelProperty(value = "账户状态(1.正常 2.锁定 )")
     private Integer status;
 
     @ApiModelProperty(value = "所属部门")

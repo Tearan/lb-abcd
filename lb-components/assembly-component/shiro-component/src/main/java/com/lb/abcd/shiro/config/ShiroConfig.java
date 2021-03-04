@@ -9,6 +9,7 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.apache.shiro.mgt.SecurityManager;
@@ -42,14 +43,22 @@ public class ShiroConfig {
     @Bean
     public CustomRealm customRealm(){
         CustomRealm customRealm = new CustomRealm();
+
+        /** 配置加密盐值  用户校验之类的*/
         customRealm.setCredentialsMatcher(customHashedCredentialsMatcher());
+
+        /** 配置缓存管理类 redisCacheManager()*/
         customRealm.setCacheManager(redisCacheManager());
         return customRealm;
     }
 
+    /**
+     * 配置 SecurityManager,可配置一个或多个realm
+     */
     @Bean
     public SecurityManager securityManager(){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        /** 配置securityManager,并注入customRealm*/
         defaultWebSecurityManager.setRealm(customRealm());
         return defaultWebSecurityManager;
     }
@@ -105,9 +114,6 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
-    /**
-     * 开启shiro aop注解支持.
-     */
 
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
@@ -122,6 +128,14 @@ public class ShiroConfig {
         return defaultAdvisorAutoProxyCreator;
     }
 
+    /**
+     * 开启shiro 注解支持. 使以下注解能够生效 :
+     * 需要认证 {@link org.apache.shiro.authz.annotation.RequiresAuthentication RequiresAuthentication}
+     * 需要用户 {@link org.apache.shiro.authz.annotation.RequiresUser RequiresUser}
+     * 需要访客 {@link org.apache.shiro.authz.annotation.RequiresGuest RequiresGuest}
+     * 需要角色 {@link org.apache.shiro.authz.annotation.RequiresRoles RequiresRoles}
+     * 需要权限 {@link org.apache.shiro.authz.annotation.RequiresPermissions RequiresPermissions}
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
