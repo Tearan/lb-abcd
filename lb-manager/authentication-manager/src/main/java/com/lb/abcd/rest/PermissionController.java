@@ -92,7 +92,6 @@ public class PermissionController extends BaseController {
         return result;
     }
 
-
     @DeleteMapping(value = "/permission/{menuId}")
     @ApiOperation("删除")
     @MyLog(title = "权限管理",action = "删除权限")

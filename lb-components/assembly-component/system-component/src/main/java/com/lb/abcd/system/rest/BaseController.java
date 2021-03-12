@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseController {
 
     public String getUserId(HttpServletRequest request){
-        String accessToken=request.getHeader(Constant.ACCESS_TOKEN);
-        String userId= JWTUtil.getUserId(accessToken);
+        String accessToken = request.getHeader(Constant.ACCESS_TOKEN);
+        String userId = JWTUtil.getUserId(accessToken);
         return userId;
     }
 }

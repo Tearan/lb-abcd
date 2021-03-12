@@ -25,11 +25,11 @@ public class MenuTreeUtil {
      * @return
      */
     public static List<PermissionRespNodeVO> getMenuTree(List<Permission> permissions, boolean type){
-        List<PermissionRespNodeVO> list=new ArrayList<>();
-        if(permissions==null||permissions.isEmpty()){
+        List<PermissionRespNodeVO> list = new ArrayList<>();
+        if(permissions == null || permissions.isEmpty()){
             return list;
         }
-        for(Permission permission:permissions){
+        for(Permission permission : permissions){
             if(permission.getPid().equals("0")){
                 PermissionRespNodeVO parent = new PermissionRespNodeVO();
                 BeanUtils.copyProperties(permission,parent);
@@ -52,10 +52,10 @@ public class MenuTreeUtil {
      * @return
      */
     private static List<PermissionRespNodeVO> getChildBtn(String pid,List<Permission> permissions){
-        List<PermissionRespNodeVO> list=new ArrayList<>();
-        for(Permission permission:permissions){
+        List<PermissionRespNodeVO> list = new ArrayList<>();
+        for(Permission permission : permissions){
             if(permission.getPid().equals(pid)){
-                PermissionRespNodeVO node=new PermissionRespNodeVO();
+                PermissionRespNodeVO node = new PermissionRespNodeVO();
                 BeanUtils.copyProperties(permission,node);
                 node.setTitle(permission.getName());
                 node.setChildren(getChildBtn(permission.getId(),permissions));
@@ -72,10 +72,10 @@ public class MenuTreeUtil {
      * @return
      */
     private static List<PermissionRespNodeVO> getChildMenu(String pid,List<Permission> permissions){
-        List<PermissionRespNodeVO> list=new ArrayList<>();
-        for(Permission permission:permissions){
-            if(permission.getPid().equals(pid)&&permission.getType()!=3){
-                PermissionRespNodeVO node=new PermissionRespNodeVO();
+        List<PermissionRespNodeVO> list = new ArrayList<>();
+        for(Permission permission : permissions){
+            if(permission.getPid().equals(pid) && permission.getType() != 3){
+                PermissionRespNodeVO node = new PermissionRespNodeVO();
                 BeanUtils.copyProperties(permission,node);
                 node.setTitle(permission.getName());
                 node.setChildren(getChildMenu(permission.getId(),permissions));
@@ -84,5 +84,4 @@ public class MenuTreeUtil {
         }
         return list;
     }
-
 }

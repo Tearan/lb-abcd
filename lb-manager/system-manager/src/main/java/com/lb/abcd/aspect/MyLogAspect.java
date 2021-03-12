@@ -95,7 +95,7 @@ public class MyLogAspect {
 
         /** 设置IP地址*/
         sysLog.setIp(IPUtils.getIpAddr(request));
-        log.info("Ip{}，接口地址{}，请求方式{}，入参：{}",sysLog.getIp(),request.getRequestURL(),request.getMethod(),sysLog.getParams());
+        log.info("IP:[{}],接口地址:[{}],请求方式:[{}],入参:[{}]",sysLog.getIp(),request.getRequestURL(),request.getMethod(),sysLog.getParams());
 
         /** 用户名 正常token*/
         String token = request.getHeader("authorization");
@@ -106,7 +106,7 @@ public class MyLogAspect {
         sysLog.setTime((int) time);
         sysLog.setId(IDUtils.generateId());
         sysLog.setCreateTime(new Date());
-        log.info(sysLog.toString());
+        log.info("保存日志数据格式:[{}]" , sysLog.toString());
         sysLogDao.insert(sysLog);
     }
 }

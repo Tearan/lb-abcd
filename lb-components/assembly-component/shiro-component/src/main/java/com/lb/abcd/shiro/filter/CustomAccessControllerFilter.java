@@ -53,7 +53,7 @@ public class CustomAccessControllerFilter extends AccessControlFilter {
 
         } catch (AuthenticationException e) {
             if(e.getCause() instanceof APIException){
-                APIException exception= (APIException) e.getCause();
+                APIException exception = (APIException) e.getCause();
                 customResponse(exception.getCode(),exception.getMsg(),servletResponse);
             }else {
                 customResponse(RsCode.SHIRO_AUTHENTICATION_ERROR.getCode(),RsCode.SHIRO_AUTHENTICATION_ERROR.getMsg(),servletResponse);

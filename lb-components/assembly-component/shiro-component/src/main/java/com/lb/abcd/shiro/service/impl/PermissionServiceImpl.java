@@ -202,7 +202,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
         if(parent != null){
             switch (parent.getType()){
                 case 1:
-
+                    /** 目录*/
                     if(parent != null){
                         if(parent.getType() != 1){
                             throw new APIException(RsCode.OPERATION_MENU_PERMISSION_CATALOG_ERROR);
@@ -213,7 +213,8 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
                     break;
 
                 case 2:
-                    if(parent==null||parent.getType() != 2){
+                    /** 菜单*/
+                    if(parent == null || parent.getType() != 2){
                         throw new APIException(RsCode.OPERATION_MENU_PERMISSION_MENU_ERROR);
                     }
                     if(StringUtils.isEmpty(permission.getUrl())){
@@ -222,6 +223,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionDao, Permission
                     break;
 
                 case 3:
+                    /** 按钮*/
                     if(parent == null || parent.getType() != 3){
                         throw new APIException(RsCode.OPERATION_MENU_PERMISSION_BTN_ERROR);
                     }

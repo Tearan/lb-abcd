@@ -64,8 +64,8 @@ public class UserController extends BaseController {
     @RequiresPermissions("sys:user:update")
     public Rs updateUserPWD(@RequestBody UserUpdatePwdReqVO vo, HttpServletRequest request){
         Rs result = Rs.success();
-        String accessToken=request.getHeader(Constant.ACCESS_TOKEN);
-        String refreshToken=request.getHeader(Constant.REFRESH_TOKEN);
+        String accessToken = request.getHeader(Constant.ACCESS_TOKEN);
+        String refreshToken = request.getHeader(Constant.REFRESH_TOKEN);
         this.userService.updatePwd(vo,accessToken,refreshToken);
         return result;
     }
