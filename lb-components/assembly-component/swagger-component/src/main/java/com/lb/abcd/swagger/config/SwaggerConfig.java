@@ -41,7 +41,6 @@ public class SwaggerConfig {
         ParameterBuilder tokenPar = new ParameterBuilder();
         ParameterBuilder refreshTokenPar = new ParameterBuilder();
         tokenPar.name("authorization").description("swagger测试用(模拟authorization传入)非必填 header").modelRef(new ModelRef("string")).parameterType("header").required(false);
-
         refreshTokenPar.name("refresh_token").description("swagger测试用(模拟刷新token传入)非必填 header").modelRef(new ModelRef("string")).parameterType("header").required(false);
 
         /** 多个的时候 就直接添加到 pars 就可以了 */
